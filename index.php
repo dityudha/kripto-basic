@@ -29,25 +29,26 @@
 <body class="hold-transition register-page">
   <div class="register-box" style="width:400px">
      <div class="register-logo">
-      <a href="#"><b>Aplikasi Kriptografi</b> Caesar Chiper</a>
+      <a href="#"><b><br>Aplikasi Web Based 
+      <br>Kriptografi</br></b> Caesar Chiper</a>
      </div>
-
-      
-      
+       
   <div class="box box-info">
       
       <?php
-		
+	// Fungsi algoritma caesar chiper untuk form 1	
 	if(isset($_POST['submit1'])){
             function Cipher($ch, $key)
             {
                 if (!ctype_alpha($ch))
                         return $ch;
-
+                // Fungsi menambah 1 karakter pada plaintext
                 $offset = ord(ctype_upper($ch) ? 'A' : 'a');
+                // Penambahan offset dari 26 huruf abjad di geser 1 karakater
                 return chr(fmod(((ord($ch) + $key) - $offset), 26) + $offset);
             }
 
+            // Fungsi enchiper plaintext pada form 1
             function Encipher($input, $key)
             {
                 $output = "";
@@ -59,22 +60,25 @@
                 return $output;
             }
 
+            // Fungsi dechiper plaintext pada form 1
             function Decipher($input, $key)
             {
                     return Encipher($input, 26 - $key);
             }
             
-            
+        // Fungsi algoritma caesar chiper untuk form 2	    
         }else if(isset($_POST['submit2'])){
             function Cipher($ch, $key)
             {
                 if (!ctype_alpha($ch))
                         return $ch;
-
+                // Fungsi menambah 1 karakter pada plaintext
                 $offset = ord(ctype_upper($ch) ? 'A' : 'a');
+                // Penambahan offset dari 26 huruf abjad di geser 1 karakater
                 return chr(fmod(((ord($ch) + $key) - $offset), 26) + $offset);
             }
 
+            // Fungsi enchiper plaintext pada form 2
             function Encipher($input, $key)
             {
                 $output = "";
@@ -86,6 +90,7 @@
                 return $output;
             }
 
+            // Fungsi dechiper plaintext pada form 2
             function Decipher($input, $key)
             {
                     return Encipher($input, 26 - $key);
@@ -96,20 +101,24 @@
     <br>
     <p class="login-box-msg" style="font-size:20px !important"><b></b></p>    
             <form name="enkripsi" method="post">
+
+              <!-- Fungsi untuk merubah tampilan pada box input text -->
               <div class="box-body">
-                <div class="form-group">
-                  <label>Input Teks</label>
-                  <textarea name="plain" required="true" oninvalid="this.setCustomValidity('Text tidak boleh kosong!')" 
-                               oninput="setCustomValidity('')" type="text" class="form-control" rows="2" placeholder="Input teks disini"></textarea>            
-                </div>
-                <div class="form-group">
-                  <label>Input Key</label>
-                  <input title="Pilih Key." required="true" oninvalid="this.setCustomValidity('Key tidak boleh kosong!')" 
-                               oninput="setCustomValidity('')" type="number" class="form-control" name="metode" placeholder="Input key disini">
-                </div>
-                
-                </div>
-              
+                    <div class="form-group">
+                    <label>Input Teks</label>
+                    <textarea name="plain" required="true" oninvalid="this.setCustomValidity('Text tidak boleh kosong!')" 
+                     oninput="setCustomValidity('')" type="text" class="form-control" rows="2" placeholder="Input teks disini"></textarea>            
+                    </div>
+
+             <!-- Fungsi untuk merubah tampilan pada box input key -->
+                    <div class="form-group">
+                    <label>Input Panjang Key</label>
+                    <input title="Pilih Key." required="true" oninvalid="this.setCustomValidity('Key tidak boleh kosong!')" 
+                     oninput="setCustomValidity('')" type="number" class="form-control" name="metode" placeholder="Input panjang key disini">
+                    </div>    
+              </div> 
+
+              <!-- Table enkripsi dan dekripsi -->
               <div class="box-footer">
                   <table class="table table-stripped">
                       <tr>
@@ -118,8 +127,10 @@
                       </tr>
                   </table>
               </div>
+            
             </form>
               <div class="box-body">
+              <!-- Fungsi untuk memanggil dan menampilkan hasil enkripsi -->
                   <label>Hasil Enkripsi</label>
                   <table class="table table-bordered">
                       <tr style="background-color:#98c1ff">
@@ -127,6 +138,7 @@
                           if (isset($_POST['submit2'])){ echo Decipher($_POST['plain'], $_POST['metode']);}?></b></td>
                       </tr>
                   </table>
+                  <!-- Fungsi untuk memanggil dan menampilkan teks asli sebelum di enkripsi -->
                   <label>Teks Asli</label>
                   <table class="table table-bordered">
                       <tr style="background-color:#98c1ff">
@@ -134,6 +146,7 @@
                           if (isset($_POST['submit2'])){ echo Encipher(Decipher($_POST['plain'], $_POST['metode']),$_POST['metode']);}?></b></td>
                       </tr>
                   </table>
+                  <!-- Fungsi untuk memanggil dan menampilkan panjang key pada saat enkripsi -->
                   <label>Panjang Key</label>
                   <table class="table table-bordered">
                       <tr style="background-color:#ff5e61">
@@ -141,15 +154,11 @@
                           if (isset($_POST['submit2'])){ echo $_POST['metode'];}?></b></td>
                       </tr>
                   </table>
-      <br>
-      <br>
+        <br>
+        <br>
                 </div>
         </div>
-<!-- </div>
-    <div class="register-box-footer">
-        <p style="text-align: center">Copyright &copy; 2018 EM-Studio</p>
-    </div>        
-</div>     -->
+
 
 <!-- /.register-box -->
 
